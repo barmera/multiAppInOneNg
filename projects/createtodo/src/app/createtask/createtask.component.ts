@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 
@@ -20,7 +25,7 @@ export class CreatetaskComponent {
   ngOnInit(): void {
     let tmpData = localStorage.getItem('isUserLoggedIn');
     if (!tmpData) {
-      this.router.navigate(['/todolist']);
+      this.router.navigate(['/signin']);
     }
 
     this.initForm();
@@ -46,16 +51,18 @@ export class CreatetaskComponent {
       let tmpData: any = localStorage.getItem('tasklist');
       let taskArr: any[] = JSON.parse(tmpData);
 
-      console.log(tmpData);
-
-      if (tmpData !== null) {
-        if (taskArr.length > 0) {
-          taskArr.push(this.createTaskForm.value);
-          console.log(taskArr);
-        }
+      if (taskArr !== null && taskArr.length > 0) {
+        let newTaskid = taskArr[taskArr.length - 1].taskid + 1;
+        this.createTaskForm.addControl('taskid', new FormControl(newTaskid));
+        taskArr.push(this.createTaskForm.value);
+        let tmpD = JSON.stringify(taskArr);
+        localStorage.setItem('tasklist', tmpD);
+      } else {
+        this.createTaskForm.addControl('taskid', new FormControl(1));
+        taskArr = [this.createTaskForm.value];
+        let tmpD = JSON.stringify(taskArr);
+        localStorage.setItem('tasklist', tmpD);
       }
-      return;
-      await localStorage.setItem('tasklist', JSON.stringify(taskArr));
 
       this.router.navigate(['/todolist']);
     }

@@ -11,7 +11,6 @@ export class HeaderComponent implements OnInit {
   constructor(private userS: UserService, private router: Router) {}
   ngOnInit(): void {
     let tmpData = localStorage.getItem('isUserLoggedIn');
-    console.log(tmpData);
 
     if (!tmpData) {
       this.router.navigate(['/signin']);

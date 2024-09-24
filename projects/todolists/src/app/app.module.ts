@@ -5,11 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TasklistComponent } from './tasklist/tasklist.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, TasklistComponent, HeaderComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [AppComponent, TasklistComponent],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
