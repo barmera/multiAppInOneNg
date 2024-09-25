@@ -1,6 +1,8 @@
 # Mainapp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.11.
+For project reference , please read this link
+https://medium.com/disney-streaming/combining-multiple-angular-applications-into-a-single-one-e87d530d6527
 
 ## Development server
 
